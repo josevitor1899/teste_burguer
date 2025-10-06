@@ -1,30 +1,65 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <div id="app">
+  <Navbar :logo="logo_src" :alt="app_name"/>
+
+  <main class="content">
   <router-view/>
+  </main>
+
+  <Footer/>
+
+    </div>
 </template>
 
+
+<script>
+  import Navbar from './components/Navbar.vue';
+  import Footer from './components/Footer.vue'
+
+
+  export default {
+    components: {
+      Navbar,
+      Footer
+    },
+    data(){
+      return {
+        logo_src: "img/logo.png",
+        app_name: "Make Your Burguer"
+      }
+    }
+  }
+</script>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  * {
+    font-family: Helvetica;
+    padding: 0;
+    margin: 0;
+    box-sizing:  border-box;
+  }
+
+  .main-container {
+    margin: 50px;
+    min-height: 250px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 30px;
+    color: #222;
+  }
+
+  #app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* força ocupar 100% da altura da tela */
 }
 
-nav {
-  padding: 30px;
+.content {
+  flex: 1; /* faz o conteúdo crescer e empurra o footer para baixo */
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
